@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Dating Assistant</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="panel hero">
+        <p class="eyebrow">Dating Reply Generator</p>
+        <h1>Turn chats and screenshots into replies that actually sound usable.</h1>
+        <p class="subcopy">
+          Paste a conversation or upload a screenshot, choose the vibe, and generate three
+          dating-app replies with a quick score check.
+        </p>
+      </section>
+
+      <section class="panel composer">
+        <label class="field-label" for="chatInput">Chat messages</label>
+        <textarea
+          id="chatInput"
+          rows="8"
+          placeholder="Paste the conversation here..."
+        ></textarea>
+
+        <div class="upload-row">
+          <div>
+            <label class="field-label" for="imageInput">Upload screenshot</label>
+            <input id="imageInput" type="file" accept="image/*" />
+          </div>
+          <p id="fileName" class="file-name">No image selected</p>
+        </div>
+
+        <div class="tones" id="toneButtons">
+          <button class="tone-button active" data-tone="Flirty" type="button">Flirty</button>
+          <button class="tone-button" data-tone="Funny" type="button">Funny</button>
+          <button class="tone-button" data-tone="Confident" type="button">Confident</button>
+          <button class="tone-button" data-tone="Savage" type="button">Savage</button>
+        </div>
+
+        <div class="action-row">
+          <button id="generateTextBtn" class="primary-button" type="button">Generate from Text</button>
+          <button id="generateImageBtn" class="secondary-button" type="button">Generate from Image</button>
+        </div>
+      </section>
+
+      <section class="panel results">
+        <div class="section-header">
+          <h2>Replies</h2>
+          <p id="statusMessage" class="status">Ready.</p>
+        </div>
+        <div id="replyList" class="reply-list"></div>
+      </section>
+
+      <section class="panel scorer">
+        <div class="section-header">
+          <h2>Score a Draft</h2>
+          <p class="status">Rate any reply out of 10.</p>
+        </div>
+        <textarea
+          id="replyToScore"
+          rows="4"
+          placeholder="Paste a reply you want to score..."
+        ></textarea>
+        <button id="scoreBtn" class="primary-button" type="button">Score Reply</button>
+        <div id="scoreResult" class="score-result hidden"></div>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
+
