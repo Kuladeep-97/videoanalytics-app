@@ -1,58 +1,75 @@
-# AI Dating Assistant
+# Why My Video Flopped + SEO Finder
 
-A small full-stack web app that turns pasted chats or screenshot uploads into three dating-app-style reply suggestions.
+A production-ready micro SaaS MVP that helps creators understand why Instagram Reels and YouTube Shorts are underperforming, discover SEO-backed content opportunities, and generate stronger hooks, captions, titles, and hashtags.
 
-## Features
+## Project structure
 
-- FastAPI backend with modular services
-- Plain HTML, CSS, and vanilla JavaScript frontend
-- OCR from uploaded screenshots via `pytesseract`
-- OpenAI-powered reply generation with tone presets
-- Reply scoring endpoint that rates a draft out of 10
+```text
+backend/   Express API, MongoDB models, auth, billing, OpenAI integration
+frontend/  React + Tailwind app with landing, dashboard, pricing, and auth
+docs/      Database schema, route reference, deployment guide
+```
 
-## Prerequisites
+## Core features
 
-1. Python 3.11+
-2. Tesseract OCR installed locally
-3. An OpenAI API key
+- Video Analyzer with engagement and retention heuristics
+- SEO Finder using Google and YouTube autocomplete suggestions
+- OpenAI-powered hook, caption, title, and hashtag generation
+- JWT authentication
+- Free vs Pro monetization gates
+- Stripe or Razorpay checkout integration
+- Rate limiting, validation, and centralized error handling
 
-### Install Tesseract
+## Backend stack
 
-- Windows: install [Tesseract OCR](https://github.com/UB-Mannheim/tesseract/wiki) and note the path to `tesseract.exe`
-- macOS: `brew install tesseract`
-- Ubuntu/Debian: `sudo apt-get install tesseract-ocr`
+- Node.js
+- Express
+- MongoDB + Mongoose
+- OpenAI API
+- Stripe / Razorpay
 
-If Tesseract is not on your system `PATH`, set `TESSERACT_CMD` in `.env`.
+## Frontend stack
 
-## Local setup
+- React
+- Tailwind CSS
+- React Router
+- Vite
+
+## Local development
+
+### Backend
 
 ```bash
-python -m venv .venv
-.venv\Scripts\activate
-pip install -r requirements.txt
+cd backend
+npm install
 copy .env.example .env
+npm run dev
 ```
 
-Set these variables in `.env`:
-
-```env
-OPENAI_API_KEY=your_key_here
-OPENAI_MODEL=gpt-5-mini
-TESSERACT_CMD=C:\Program Files\Tesseract-OCR\tesseract.exe
-```
-
-## Run
+### Frontend
 
 ```bash
-uvicorn app.main:app --reload
+cd frontend
+npm install
+copy .env.example .env
+npm run dev
 ```
 
-Open `http://127.0.0.1:8000`.
+## Environment variables
 
-## API endpoints
+See:
 
-- `GET /` renders the frontend
-- `POST /api/generate/text` generates 3 replies from pasted text
-- `POST /api/generate/image` extracts text from an uploaded image, then generates 3 replies
-- `POST /api/score` rates a reply out of 10
+- `backend/.env.example`
+- `frontend/.env.example`
+
+## Documentation
+
+- [Database schema](docs/database-schema.md)
+- [API routes](docs/api-routes.md)
+- [Deployment guide](docs/deployment-guide.md)
+
+## Hosting
+
+- Frontend is prepared for Vercel with [vercel.json](vercel.json)
+- Backend is prepared for Render with [render.yaml](render.yaml)
 

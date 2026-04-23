@@ -2,3 +2,17 @@
 .venv/
 __pycache__/
 *.pyc
+node_modules/
+dist/
+backend/.env
+frontend/.env
+node_modules/
+.env
+.env.*
+uploads/
+backend/uploads/
+dist/
+build/
+.DS_Store
+.vscode/
+.idea/

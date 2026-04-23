@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #122620;
+  background: #fbf8f1;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Trebuchet MS", sans-serif;
+  color: #122620;
+  background:
+    radial-gradient(circle at top left, rgba(249, 115, 82, 0.16), transparent 35%),
+    linear-gradient(180deg, #fbf8f1 0%, #f2e6d0 100%);
+}
+
+#root {
+  min-height: 100vh;
+}
