@@ -1,18 +1,56 @@
+# ======================
+# ENV FILES (SECRETS)
+# ======================
 .env
+.env.*
+backend/.env
+frontend/.env
+!.env.example
+
+# ======================
+# NODE (Frontend/Backend)
+# ======================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ======================
+# BUILD FILES
+# ======================
+dist/
+build/
+
+# ======================
+# UPLOADS (IMPORTANT)
+# ======================
+uploads/
+backend/uploads/
+
+# ======================
+# PYTHON (🔥 YOUR ISSUE)
+# ======================
+video/
+venv/
 .venv/
 __pycache__/
 *.pyc
-node_modules/
-dist/
-backend/.env
-frontend/.env
-node_modules/
-.env
-.env.*
-uploads/
-backend/uploads/
-dist/
-build/
+
+# ======================
+# OS FILES
+# ======================
 .DS_Store
+Thumbs.db
+
+# ======================
+# EDITORS / IDE
+# ======================
 .vscode/
 .idea/
+
+# ======================
+# LOGS & TEMP
+# ======================
+*.log
+*.tmp
+*.pid
