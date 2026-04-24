@@ -5,6 +5,8 @@ import { request } from "../api/client";
 import AnalysisResult from "../components/AnalysisResult";
 import { useAuth } from "../context/AuthContext";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const initialForm = {
   platform: "Reels",
   views: "",
@@ -89,7 +91,7 @@ function DashboardPage() {
       formData.append("platform", form.platform);
       formData.append("niche", form.niche);
 
-      const res = await fetch("http://localhost:5000/api/videos/analyze", {
+      const res = await fetch(`${API_URL}/videos/analyze`, {
         method: "POST",
         body: formData,
         headers: {
@@ -98,13 +100,14 @@ function DashboardPage() {
       });
 
       const data = await res.json();
+
       if (!res.ok) throw new Error(data.message || "Analysis failed");
 
       setAnalysis(data);
       setSeo(null);
       setAi(null);
     } catch (err) {
-      setError(err.message);
+      setError(err.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
@@ -152,11 +155,9 @@ function DashboardPage() {
 
       <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
 
-        {/* LEFT PANEL */}
         <div className="bg-white rounded-2xl p-6 shadow space-y-4">
           <h2 className="text-lg font-semibold">Run a video diagnosis</h2>
 
-          {/* PLATFORM SELECT */}
           <select
             name="platform"
             value={form.platform}
@@ -188,11 +189,7 @@ function DashboardPage() {
             />
           ))}
 
-          <input
-            type="file"
-            accept="video/*"
-            onChange={handleVideoUpload}
-          />
+          <input type="file" accept="video/*" onChange={handleVideoUpload} />
 
           <div className="flex gap-2 pt-2">
             <button
@@ -200,7 +197,7 @@ function DashboardPage() {
               disabled={loading}
               className="bg-orange-500 hover:bg-orange-600 transition text-white px-4 py-2 rounded-lg"
             >
-              Analyze
+              {loading ? "Analyzing..." : "Analyze"}
             </button>
 
             <button
@@ -223,7 +220,6 @@ function DashboardPage() {
           {error && <p className="text-red-500 text-sm">{error}</p>}
         </div>
 
-        {/* RIGHT PANEL */}
         <div className="space-y-6">
           <AnalysisResult data={analysis} />
 
